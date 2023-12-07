@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, Form, FormControl, Button, OverlayTrigger, Tool
 import CartWidget from "./CartWidget"
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import gameIcon from '../../public/gameIcon.svg';
+import gameIcon from '/gameIcon.svg';
 
 const NavBar = () => {
     const [activeLink, setActiveLink] = useState('INICIO');
@@ -51,7 +51,7 @@ const NavBar = () => {
                             }
                         >
                             <Button variant="outline-success" style={{ ... buttonStyle, marginLeft: '5px'}} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}>
-                                <FaSearch />
+                                <FaSearch/>
                             </Button>
                         </OverlayTrigger>
                     </Form>
