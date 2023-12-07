@@ -25,7 +25,7 @@ const NavBar = () => {
             <Container className="d-flex justify-content-between">
                 <Navbar.Brand href="#" style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={gameIcon} alt="Gamer Icon" style={{ marginRight: '10px', width: '30px', height: '30px' }} />
-                    Mi E-Commerce
+                    TUKI
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
@@ -46,7 +46,7 @@ const NavBar = () => {
                             placement="bottom"
                             overlay={
                                 <Tooltip id={`tooltip-bottom`}>
-                                    Buscar
+                                    Buscar Producto
                                 </Tooltip>
                             }
                         >
@@ -55,8 +55,8 @@ const NavBar = () => {
                             </Button>
                         </OverlayTrigger>
                     </Form>
+                    <CartWidget />
                 </Navbar.Collapse>
-                <CartWidget />
             </Container>
         </Navbar>
     )
