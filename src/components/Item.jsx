@@ -1,9 +1,15 @@
-import React from 'react'
-import { FaShoppingCart } from 'react-icons/fa';
-import { FaExpandAlt } from "react-icons/fa";
+import React from 'react';
+import { FaShoppingCart, FaExpandAlt } from 'react-icons/fa';
 import { Card, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Item = ({ id, categoria, nombre, descripcion, precio }) => {
+    const navigate = useNavigate();
+
+    const handleExpandClick = () => {
+        navigate(`/MiPrimer-ECommerce/ItemDetail/${id}`);
+    };
+
     return (
         <div>
             <Card style={{ maxWidth: '300px', margin: 'auto' }} className="position-relative">
@@ -11,11 +17,11 @@ const Item = ({ id, categoria, nombre, descripcion, precio }) => {
                     placement="top"
                     overlay={
                         <Tooltip id={`tooltip-top`}>
-                            Expandir
+                            <Link to={`/MiPrimer-ECommerce/ItemDetail/${id}`}>Expandir</Link>
                         </Tooltip>
                     }
                 >
-                    <Button variant="primary" className="position-absolute top-0 end-0 m-2">
+                    <Button variant="primary" className="position-absolute top-0 end-0 m-2" onClick={handleExpandClick}>
                         <FaExpandAlt />
                     </Button>
                 </OverlayTrigger>
@@ -60,7 +66,7 @@ const Item = ({ id, categoria, nombre, descripcion, precio }) => {
                 </Card.Body>
             </Card>
         </div>
-    )
-}
+    );
+};
 
-export default Item
+export default Item;
