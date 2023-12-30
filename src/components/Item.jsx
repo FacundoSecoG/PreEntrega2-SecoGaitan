@@ -2,12 +2,17 @@ import React from 'react';
 import { FaShoppingCart, FaExpandAlt } from 'react-icons/fa';
 import { Card, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { agregarProductoAlCarrito } from '../asyncMock'; 
 
-const Item = ({ id, categoria, nombre, descripcion, precio }) => {
+const Item = ({ id, categoria, nombre, descripcion, precio, imagen }) => {
     const navigate = useNavigate();
 
     const handleExpandClick = () => {
-        navigate(`/MiPrimer-ECommerce/ItemDetail/${id}`);
+        navigate(`/ItemDetail/${id}`);
+    };
+
+    const handleAgregarCarritoClick = () => {
+        agregarProductoAlCarrito(id);
     };
 
     return (
@@ -17,7 +22,7 @@ const Item = ({ id, categoria, nombre, descripcion, precio }) => {
                     placement="top"
                     overlay={
                         <Tooltip id={`tooltip-top`}>
-                            <Link to={`/MiPrimer-ECommerce/ItemDetail/${id}`}>Expandir</Link>
+                            <Link to={`/ItemDetail/${id}`}>Expandir</Link>
                         </Tooltip>
                     }
                 >
@@ -25,7 +30,7 @@ const Item = ({ id, categoria, nombre, descripcion, precio }) => {
                         <FaExpandAlt />
                     </Button>
                 </OverlayTrigger>
-                <Card.Img variant="top" src="https://via.placeholder.com/150" />
+                <Card.Img variant="top" src={imagen} style={{ height: '380px', objectFit: 'cover' }} />
                 <Card.Body className="position-relative">
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <Card.Title style={{
@@ -46,7 +51,7 @@ const Item = ({ id, categoria, nombre, descripcion, precio }) => {
                                 </Tooltip>
                             }
                         >
-                            <Button variant="primary" className="ml-2">
+                            <Button variant="primary" className="ml-2" onClick={handleAgregarCarritoClick}>
                                 <FaShoppingCart />
                             </Button>
                         </OverlayTrigger>

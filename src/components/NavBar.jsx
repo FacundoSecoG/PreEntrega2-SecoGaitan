@@ -1,13 +1,18 @@
 import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import CartWidget from "./CartWidget"
+import CartWidget from "./CartWidget";
 import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import gameIcon from '/gameIcon.svg';
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { getProductosPorCategoria } from '../asyncMock';
 
 const NavBar = () => {
     const [activeLink, setActiveLink] = useState('INICIO');
     const [buttonStyle, setButtonStyle] = useState({});
+    const [searchCategory, setSearchCategory] = useState('');
+    const [activeCategory, setActiveCategory] = useState('');
+
+    const { category } = useParams();
 
     const handleNavLinkClick = (linkName) => {
         setActiveLink(linkName);
@@ -21,18 +26,25 @@ const NavBar = () => {
         setButtonStyle({ color: 'black', borderColor: 'black', backgroundColor: 'transparent' });
     };
 
-    const [activeCategory, setActiveCategory] = useState('');
+    const handleSearchCategory = () => {
+        if (category) {
+            getProductosPorCategoria(category).then((productos) => {
+                console.log('Productos filtrados por categoría:', productos);
+            });
+        }
+    };
+
     const location = useLocation();
     useEffect(() => {
         const currentPath = location.pathname;
         if (currentPath.includes('Home')) {
-            setActiveLink('INICIO');
+            setActiveLink('inicio');
             setActiveCategory('');
         } else if (currentPath.includes('Products')) {
-            setActiveLink('PRODUCTOS');
+            setActiveLink('productos');
             setActiveCategory('');
         } else if (currentPath.includes('Contact')) {
-            setActiveLink('CONTACTO');
+            setActiveLink('contacto');
             setActiveCategory('');
         } else if (currentPath.includes('Category')) {
             setActiveLink('');
@@ -44,27 +56,26 @@ const NavBar = () => {
     return (
         <Navbar bg="light" expand="lg">
             <Container className="d-flex justify-content-between">
-                <Link to="/MiPrimer-ECommerce/Home" style={{ display: 'flex', alignItems: 'center' }}>
+                <Link to="/Home" style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={gameIcon} alt="Gamer Icon" style={{ marginRight: '10px', width: '30px', height: '30px' }} />
                     TUKI
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
                     <Nav className="w-50 justify-content-around">
-                        <Link to="/MiPrimer-ECommerce/Home" onClick={() => handleNavLinkClick('INICIO')} style={activeLink === 'INICIO' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>INICIO</Link>
-                        <Link to="/MiPrimer-ECommerce/Products" onClick={() => handleNavLinkClick('PRODUCTOS')} style={activeLink === 'PRODUCTOS' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>PRODUCTOS</Link>
-                        <Link to="/MiPrimer-ECommerce/Contact" onClick={() => handleNavLinkClick('CONTACTO')} style={activeLink === 'CONTACTO' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>CONTACTO</Link>
-                        <NavDropdown title={activeCategory || "CATEGORIAS"} id="basic-nav-dropdown" style={activeCategory ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>
-
-                            <NavDropdown.Item>
-                                <Link to="/MiPrimer-ECommerce/Category/APPLE" onClick={() => { setActiveCategory('APPLE'); setActiveLink(''); }} style={activeCategory === 'APPLE' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>APPLE</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to="/MiPrimer-ECommerce/Category/SAMSUNG" onClick={() => { setActiveCategory('SAMSUNG'); setActiveLink(''); }} style={activeCategory === 'SAMSUNG' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>SAMSUNG</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to="/MiPrimer-ECommerce/Category/XIAOMI" onClick={() => { setActiveCategory('XIAOMI'); setActiveLink(''); }} style={activeCategory === 'XIAOMI' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>XIAOMI</Link>
-                            </NavDropdown.Item>
+                        <Link to="/Home" onClick={() => handleNavLinkClick('inicio')} style={activeLink === 'inicio' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>inicio</Link>
+                        <Link to="/Products" onClick={() => handleNavLinkClick('productos')} style={activeLink === 'productos' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>productos</Link>
+                        <Link to="/Contact" onClick={() => handleNavLinkClick('contacto')} style={activeLink === 'contacto' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>contacto</Link>
+                        <NavDropdown title={activeCategory || "categorias"} id="basic-nav-dropdown" style={activeCategory ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>
+                            <div className="text-center">
+                                <Link to="/Category/apple" onClick={() => { setActiveCategory('apple'); setActiveLink(''); }} style={activeCategory === 'apple' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>apple</Link>
+                            </div>
+                            <div className="text-center">
+                                <Link to="/Category/samsung" onClick={() => { setActiveCategory('samsung'); setActiveLink(''); }} style={activeCategory === 'samsung' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>samsung</Link>
+                            </div>
+                            <div className="text-center">
+                                <Link to="/Category/xiaomi" onClick={() => { setActiveCategory('xiaomi'); setActiveLink(''); }} style={activeCategory === 'xiaomi' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>xiaomi</Link>
+                            </div>
                         </NavDropdown>
                     </Nav>
                     <Form className="d-flex">
@@ -73,27 +84,28 @@ const NavBar = () => {
                             placeholder="Buscar"
                             className="mr-2"
                             aria-label="Buscar"
+                            onChange={(e) => setSearchCategory(e.target.value)}
                         />
                         <OverlayTrigger
                             placement="bottom"
                             overlay={
                                 <Tooltip id={`tooltip-bottom`}>
-                                    Buscar Producto
+                                    Buscar Producto por Categoría
                                 </Tooltip>
                             }
                         >
-                            <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton}>
+                            <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton} onClick={() => handleSearchCategory(searchCategory)}>
                                 <FaSearch />
                             </Button>
                         </OverlayTrigger>
                     </Form>
-                    <Link to={"/MiPrimer-ECommerce/Cart"}>
+                    <Link to={"/Cart"}>
                         <CartWidget />
                     </Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
-    )
-}
+    );
+};
 
 export default NavBar;

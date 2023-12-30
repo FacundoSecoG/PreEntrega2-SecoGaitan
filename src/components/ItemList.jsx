@@ -4,31 +4,35 @@ import { Row, Col } from 'react-bootstrap';
 
 const sortByPriceDescending = (a, b) => b.precio - a.precio;
 
-const ItemList = ({ productos }) => {
-    const productosPorMarca = {};
-    productos.forEach((producto) => {
-        if (!productosPorMarca[producto.categoria]) {
-            productosPorMarca[producto.categoria] = [];
+const ItemList = ({ products }) => {
+    const productsByCategory = {};
+
+    products.forEach((product) => {
+        if (!productsByCategory[product.categoria]) {
+            productsByCategory[product.categoria] = [];
         }
-        productosPorMarca[producto.categoria].push(producto);
+        productsByCategory[product.categoria].push(product);
     });
-    for (const categoria in productosPorMarca) {
-        productosPorMarca[categoria].sort(sortByPriceDescending);
+
+    for (const category in productsByCategory) {
+        productsByCategory[category].sort(sortByPriceDescending);
     }
+
     return (
         <div>
-            {Object.entries(productosPorMarca).map(([categoria, productos]) => (
-                <div key={categoria}>
-                    <h2>{categoria}</h2>
+            {Object.entries(productsByCategory).map(([category, products]) => (
+                <div key={category}>
+                    <h2>{category}</h2>
                     <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-                        {productos.map((producto) => (
-                            <Col key={producto.id}>
+                        {products.map((product) => (
+                            <Col key={product.id}>
                                 <Item
-                                    id={producto.id}
-                                    categoria={producto.categoria}
-                                    nombre={producto.producto}
-                                    descripcion={producto.descripcion}
-                                    precio={producto.precio}
+                                    id={product.id}
+                                    categoria={product.categoria}
+                                    nombre={product.producto}
+                                    descripcion={product.descripcion}
+                                    precio={product.precio}
+                                    imagen={product.imagen}
                                 />
                             </Col>
                         ))}
