@@ -35,7 +35,7 @@ export const getProductos = () => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(productos)
-        }, 500)
+        }, 100)
     })
 }
 
@@ -44,7 +44,7 @@ export const getProductosPorCategoria = (categoria) => {
         setTimeout(() => {
             const productosFiltrados = productos.filter((producto) => producto.categoria === categoria);
             resolve(productosFiltrados);
-        }, 500);
+        }, 100);
     });
 };
 
@@ -53,7 +53,7 @@ export const getProductoPorId = (id) => {
         setTimeout(() => {
             const productoEncontrado = productos.find((producto) => producto.id === id);
             resolve(productoEncontrado);
-        }, 500);
+        }, 100);
     });
 };
 
@@ -70,6 +70,9 @@ export const agregarProductoAlCarrito = async (id) => {
     }
 
     localStorage.setItem('carrito', JSON.stringify(carritoActual));
+
+    // Emitir un evento personalizado
+    window.dispatchEvent(new CustomEvent('cartChange'));
 };
 
 export const getProductosPorIds = (ids) => {

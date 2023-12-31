@@ -1,6 +1,8 @@
 import React from 'react';
 import Item from './Item';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
+import CategoryTagApertura from './CategoryTagsApertura';
+import CategoryTagCierre from './CategoryTagsCierre';
 
 const sortByPriceDescending = (a, b) => b.precio - a.precio;
 
@@ -19,13 +21,13 @@ const ItemList = ({ products }) => {
     }
 
     return (
-        <div>
+        <Container>
             {Object.entries(productsByCategory).map(([category, products]) => (
                 <div key={category}>
-                    <h2>{category}</h2>
-                    <Row xs={1} sm={2} md={3} lg={4} className="g-4">
+                    <CategoryTagApertura>{category}</CategoryTagApertura>
+                    <Row xs={1} sm={2} md={3} lg={4} className="g-4 justify-content-center">
                         {products.map((product) => (
-                            <Col key={product.id}>
+                            <Col key={product.id} style={{ minWidth: '300px' }}>
                                 <Item
                                     id={product.id}
                                     categoria={product.categoria}
@@ -37,9 +39,10 @@ const ItemList = ({ products }) => {
                             </Col>
                         ))}
                     </Row>
+                    <CategoryTagCierre>{category}</CategoryTagCierre>
                 </div>
             ))}
-        </div>
+        </Container>
     );
 };
 

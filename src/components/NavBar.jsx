@@ -18,6 +18,12 @@ const NavBar = () => {
         setActiveLink(linkName);
     };
 
+    const handleSearchCategoryFromInput = () => {
+        if (searchCategory) {
+            window.location.href = `/Category/${searchCategory}`;
+        }
+    };
+
     const handleMouseEnterButton = () => {
         setButtonStyle({ color: 'white', borderColor: 'blue', backgroundColor: 'blue' });
     };
@@ -85,19 +91,16 @@ const NavBar = () => {
                             className="mr-2"
                             aria-label="Buscar"
                             onChange={(e) => setSearchCategory(e.target.value)}
+                            onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    handleSearchCategoryFromInput();
+                                }
+                            }}
                         />
-                        <OverlayTrigger
-                            placement="bottom"
-                            overlay={
-                                <Tooltip id={`tooltip-bottom`}>
-                                    Buscar Producto por Categoría
-                                </Tooltip>
-                            }
-                        >
-                            <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton} onClick={() => handleSearchCategory(searchCategory)}>
+                            <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton} onClick={handleSearchCategoryFromInput}>
                                 <FaSearch />
                             </Button>
-                        </OverlayTrigger>
                     </Form>
                     <Link to={"/Cart"}>
                         <CartWidget />

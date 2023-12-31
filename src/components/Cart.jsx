@@ -41,6 +41,7 @@ const Cart = () => {
 
     const actualizarCarritoLocalStorage = (productos) => {
         localStorage.setItem('carrito', JSON.stringify(productos));
+        window.dispatchEvent(new CustomEvent('cartChange'));
     };
 
     const calcularSubtotal = () => {
@@ -54,6 +55,8 @@ const Cart = () => {
     const handleFinalizarCompra = () => {
         console.log('Compra finalizada');
     };
+
+    
 
     return (
         <Container className="d-flex flex-column align-items-center">
