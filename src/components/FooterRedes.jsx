@@ -6,7 +6,7 @@ const FooterRedes = () => {
     const [iconColor, setIconColor] = useState({ facebook: 'black', instagram: 'black', twitter: 'black' });
 
     const handleMouseEnter = (network) => {
-        setIconColor({ ...iconColor, [network]: 'blue' });
+        setIconColor({ ...iconColor, [network]: '#0d6efd' });
     };
 
     const handleMouseLeave = (network) => {

@@ -25,7 +25,7 @@ const NavBar = () => {
     };
 
     const handleMouseEnterButton = () => {
-        setButtonStyle({ color: 'white', borderColor: 'blue', backgroundColor: 'blue' });
+        setButtonStyle({ color: '#0d6efd', borderColor: '#0d6efd', backgroundColor: '#0d6efd' });
     };
 
     const handleMouseLeaveButton = () => {
@@ -61,26 +61,26 @@ const NavBar = () => {
 
     return (
         <Navbar bg="light" expand="lg">
-            <Container className="d-flex justify-content-between">
+            <Container className="d-flex justify-content-between align-items-center">
                 <Link to="/Home" style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={gameIcon} alt="Gamer Icon" style={{ marginRight: '10px', width: '30px', height: '30px' }} />
                     TUKI
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
-                    <Nav className="w-50 justify-content-around">
-                        <Link to="/Home" onClick={() => handleNavLinkClick('inicio')} style={activeLink === 'inicio' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>inicio</Link>
-                        <Link to="/Products" onClick={() => handleNavLinkClick('productos')} style={activeLink === 'productos' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>productos</Link>
-                        <Link to="/Contact" onClick={() => handleNavLinkClick('contacto')} style={activeLink === 'contacto' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>contacto</Link>
-                        <NavDropdown title={activeCategory || "categorias"} id="basic-nav-dropdown" style={activeCategory ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>
+                    <Nav className="w-50 justify-content-around align-items-center">
+                        <Link to="/Home" onClick={() => handleNavLinkClick('inicio')} style={activeLink === 'inicio' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>inicio</Link>
+                        <Link to="/Products" onClick={() => handleNavLinkClick('productos')} style={activeLink === 'productos' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>productos</Link>
+                        <Link to="/Contact" onClick={() => handleNavLinkClick('contacto')} style={activeLink === 'contacto' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>contacto</Link>
+                        <NavDropdown title={activeCategory || "categorias"} id="basic-nav-dropdown" style={activeCategory ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>
                             <div className="text-center">
-                                <Link to="/Category/apple" onClick={() => { setActiveCategory('apple'); setActiveLink(''); }} style={activeCategory === 'apple' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>apple</Link>
+                                <Link to="/Category/apple" onClick={() => { setActiveCategory('apple'); setActiveLink(''); }} style={activeCategory === 'apple' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>apple</Link>
                             </div>
                             <div className="text-center">
-                                <Link to="/Category/samsung" onClick={() => { setActiveCategory('samsung'); setActiveLink(''); }} style={activeCategory === 'samsung' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>samsung</Link>
+                                <Link to="/Category/samsung" onClick={() => { setActiveCategory('samsung'); setActiveLink(''); }} style={activeCategory === 'samsung' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>samsung</Link>
                             </div>
                             <div className="text-center">
-                                <Link to="/Category/xiaomi" onClick={() => { setActiveCategory('xiaomi'); setActiveLink(''); }} style={activeCategory === 'xiaomi' ? { color: 'blue', borderBottom: '2px solid blue', transition: 'color 0.3s ease-in-out' } : {}}>xiaomi</Link>
+                                <Link to="/Category/xiaomi" onClick={() => { setActiveCategory('xiaomi'); setActiveLink(''); }} style={activeCategory === 'xiaomi' ? { color: '#0d6efd', borderBottom: '2px solid #0d6efd', transition: 'color 0.3s ease-in-out' } : { color: 'black' }}>xiaomi</Link>
                             </div>
                         </NavDropdown>
                     </Nav>
@@ -98,9 +98,9 @@ const NavBar = () => {
                                 }
                             }}
                         />
-                            <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton} onClick={handleSearchCategoryFromInput}>
-                                <FaSearch />
-                            </Button>
+                        <Button variant="outline-success" style={{ ...buttonStyle, marginLeft: '5px' }} onMouseEnter={handleMouseEnterButton} onMouseLeave={handleMouseLeaveButton} onClick={handleSearchCategoryFromInput}>
+                            <FaSearch />
+                        </Button>
                     </Form>
                     <Link to={"/Cart"}>
                         <CartWidget />

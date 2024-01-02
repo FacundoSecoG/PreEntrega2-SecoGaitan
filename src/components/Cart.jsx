@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Button, ListGroup, Container } from 'react-bootstrap';
 import CartItem from './CartItem';
 import { getProductosPorIds } from '../asyncMock';
+import CategoryTagApertura from './CategoryTagsApertura';
+import CategoryTagCierre from './CategoryTagsCierre';
+
 
 const Cart = () => {
     const [productosEnCarrito, setProductosEnCarrito] = useState([]);
@@ -56,11 +59,13 @@ const Cart = () => {
         console.log('Compra finalizada');
     };
 
-    
+
 
     return (
         <Container className="d-flex flex-column align-items-center">
-            <h2>Carrito</h2>
+            <div className="align-self-start">
+                <CategoryTagApertura>Carrito</CategoryTagApertura>
+            </div>
             <ListGroup style={{ width: '80%' }}>
                 {productosEnCarrito.map((producto) => (
                     <CartItem
@@ -81,6 +86,9 @@ const Cart = () => {
             <Button variant="primary" className="mt-3" onClick={handleFinalizarCompra}>
                 Finalizar compra
             </Button>
+            <div className="align-self-end">
+                <CategoryTagCierre>Carrito</CategoryTagCierre>
+            </div>
         </Container>
     );
 };

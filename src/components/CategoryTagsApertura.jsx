@@ -5,7 +5,7 @@ const CategoryTagApertura = ({ children, align }) => {
 
     const containerStyle = {
         fontSize: '2.5rem',
-        textAlign: 'align',
+        textAlign: 'left',
         fontWeight: 'bold',
         position: 'relative',
         cursor: 'pointer',
@@ -15,7 +15,7 @@ const CategoryTagApertura = ({ children, align }) => {
         fontWeight: 'bold',
         fontSize: '3rem',
         zIndex: 1,
-        color: isHovered ? 'rgb(0, 0, 255)' : 'black',
+        color: isHovered ? '#0d6efd' : 'black',
         display: 'inline-block',
         padding: isHovered ? '0 0.5rem' : '0',
         transition: 'color 0.3s ease, padding 0.3s ease',

@@ -5,7 +5,7 @@ const CategoryTagCierre = ({ children }) => {
 
     const containerStyle = {
         fontSize: '2.5rem',
-        textAlign: 'align',
+        textAlign: 'right',
         fontWeight: 'bold',
         textAlign: 'right',
         position: 'relative',
@@ -16,7 +16,7 @@ const CategoryTagCierre = ({ children }) => {
         fontWeight: 'bold',
         fontSize: '3rem',
         zIndex: 1,
-        color: isHovered ? 'rgb(0, 0, 255)' : 'black',
+        color: isHovered ? '#0d6efd' : 'black',
         display: 'inline-block',
         padding: isHovered ? '0 0.7rem' : '0',
         transition: 'color 0.3s ease, padding 0.3s ease',

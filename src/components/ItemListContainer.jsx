@@ -32,7 +32,7 @@ const ItemListContainer = ({ greeting }) => {
                 <h1 style={{ fontSize: '4rem', textAlign: 'center', padding: '2rem', textAlign: 'center'}}>
                     {greeting.split("Tuki E-Commerce").map((item, index) =>
                         index === 0 ?
-                            <span key={index}>{item}<span style={{ color: '#0000ff' }}>Tuki E-Commerce!</span></span> : <span key={index}>{item}</span>
+                            <span key={index}>{item}<span style={{ color: '#0d6efd' }}>Tuki E-Commerce!</span></span> : <span key={index}>{item}</span>
                     )}
                 </h1>
             )}

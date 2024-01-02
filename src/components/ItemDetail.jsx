@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { getProductoPorId, agregarProductoAlCarrito } from '../asyncMock';
+import CategoryTagApertura from './CategoryTagsApertura';
+import CategoryTagCierre from './CategoryTagsCierre';
 
 const ItemDetail = ({ getProductos }) => {
     const { id } = useParams();
@@ -26,6 +28,9 @@ const ItemDetail = ({ getProductos }) => {
 
     return (
         <div className="container my-4">
+            <div className="align-self-start">
+                <CategoryTagApertura>{producto.categoria}</CategoryTagApertura>
+            </div>
             <Card className="d-flex">
                 <Row>
                     <Col xs={12} md={6}>
@@ -44,6 +49,9 @@ const ItemDetail = ({ getProductos }) => {
                     </Col>
                 </Row>
             </Card>
+            <div className="align-self-end">
+                <CategoryTagCierre>{producto.categoria}</CategoryTagCierre>
+            </div>
         </div>
     );
 };
