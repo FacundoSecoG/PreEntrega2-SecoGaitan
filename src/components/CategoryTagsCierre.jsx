@@ -5,7 +5,6 @@ const CategoryTagCierre = ({ children }) => {
 
     const containerStyle = {
         fontSize: '2.5rem',
-        textAlign: 'right',
         fontWeight: 'bold',
         textAlign: 'right',
         position: 'relative',

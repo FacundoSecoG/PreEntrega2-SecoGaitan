@@ -1,5 +1,5 @@
 import { Container } from 'react-bootstrap';
-import ItemList from './itemList';
+import ItemList from './ItemList';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductosPorCategoria, getProductos } from '../asyncMock';
